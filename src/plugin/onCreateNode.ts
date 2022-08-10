@@ -67,7 +67,7 @@ export const onCreateNode = async (
   }
 
   const {createNode, createParentChildLink} = actions;
-
+  console.log('oncreateNode', content, node);
   const localeNode: LocaleNodeInput = {
     id: createNodeId(`${id} >>> Locale`),
     children: [],
@@ -77,7 +77,7 @@ export const onCreateNode = async (
       contentDigest: createContentDigest(data),
       type: `Locale`
     },
-    language: language,
+    language: content.i18n_lang,
     ns: name,
     data,
     fileAbsolutePath: absolutePath

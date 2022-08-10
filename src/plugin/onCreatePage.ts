@@ -88,7 +88,7 @@ export const onCreatePage = async (
   } else {
     newPage = await generatePage({language: defaultLanguage, pageOptions});
   }
-
+  console.log('onCreatePage', page, newPage);
   try {
     deletePage(page);
   } catch {}
