@@ -56,7 +56,7 @@ export const onCreateNode = async (
   // relativeDirectory name is language name.
   const language = relativeDirectory;
   const content = await loadNodeContent(node);
-
+  const decodedContent = JSON.parse(content);
   // verify & canonicalize indent. (do not care about key order)
   let data: string;
   try {
@@ -67,7 +67,7 @@ export const onCreateNode = async (
   }
 
   const {createNode, createParentChildLink} = actions;
-  console.log('oncreateNode', content, node);
+  console.log('oncreateNode', decodedContent, node);
   const localeNode: LocaleNodeInput = {
     id: createNodeId(`${id} >>> Locale`),
     children: [],
@@ -77,7 +77,7 @@ export const onCreateNode = async (
       contentDigest: createContentDigest(data),
       type: `Locale`
     },
-    language: content.i18n_lang,
+    language: decodedContent.i18n_lang,
     ns: name,
     data,
     fileAbsolutePath: absolutePath
